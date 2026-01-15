@@ -53,7 +53,8 @@ class Program
                 newEntry._entry = entry;
 
                 // Add my new entry to the JournalDB
-                myJournal._entries.Add(newEntry);
+                // myJournal._entries.Add(newEntry); // Replaced with method call to AddEntry
+                myJournal.AddEntry(newEntry);
 
                 // Display all my journal entries, mostly to confirm the new entry was added
                 Console.WriteLine(" "); // Break for readability
