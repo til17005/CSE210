@@ -6,6 +6,12 @@ public class JournalDB
     // List to hold my journal entries
     public List<JournalEntry> _entries;
 
+    // Method to add a new journal entry to mu _entries list
+    public void AddEntry(JournalEntry entry)
+    {
+        _entries.Add(entry);
+    }
+
     // Method or function to display all my journal entries
     public void DisplayJournal()
     {

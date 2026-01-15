@@ -8,6 +8,6 @@ public class JournalEntry
     // Method or function to display my journal entry
     public void DisplayEntry()
     {
-        Console.WriteLine($"{_date} - {_prompt}\n{_entry}");
+        Console.WriteLine($"{_date} - {_prompt}\n{_entry}\n");
     }
 }

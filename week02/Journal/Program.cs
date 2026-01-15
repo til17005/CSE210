@@ -14,8 +14,7 @@ class Program
 
         // Create JournalDB object to hold my joural entries
         JournalDB myJournal = new JournalDB();
-        // Create a JournalEntry object to hold my new journal entry
-        JournalEntry newEntry = new JournalEntry();
+
         // Create GetPrompts object to get my random prompts
         GetPrompts getPrompts = new GetPrompts();
 
@@ -38,6 +37,9 @@ class Program
             // Beginning of my if else statement for the menu choices
             if (choice == 1)
             {
+                // Create a JournalEntry object to hold my new journal entry
+                JournalEntry newEntry = new JournalEntry();
+
                 // Get a random propt from GetPrompts class
                 string prompt = getPrompts.GetRandomPrompt();
 
@@ -54,11 +56,13 @@ class Program
                 myJournal._entries.Add(newEntry);
 
                 // Display all my journal entries, mostly to confirm the new entry was added
+                Console.WriteLine(" "); // Break for readability
                 myJournal.DisplayJournal();
             }
             else if (choice == 2)
             {
                 // Display all my journal entries
+                Console.WriteLine(" "); // Break for readability
                 myJournal.DisplayJournal();
             }
             else if (choice == 3)
