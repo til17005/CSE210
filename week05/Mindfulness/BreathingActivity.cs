@@ -44,6 +44,14 @@ public class BreathingActivity : Activity
             }
         }
 
+        // Entries for enhancement
+        string dateStamp = startTime.ToString();
+        activity.Add(dateStamp);
+        activity.Add(_name);
+        activity.Add(_description);
+        activity.Add(sessionDuration);
+        //-----------------------------
+
         Console.WriteLine("Well done!!");
         ShowSpinner(4);
         Console.WriteLine($"\nYou have completed another {_duration} seconds of {_name}.");

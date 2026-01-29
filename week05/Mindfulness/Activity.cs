@@ -1,8 +1,15 @@
-public class Activity
+public class Activity : UserClass
 {
     protected string _name;
     protected string _description;
     protected int _duration;
+
+    // Entries for enhancement
+    protected List<string> activity = new List<string> { };
+    protected List<string> activityPrompts = new List<string> { };
+    protected List<string> activityQuestions = new List<string> { };
+    protected List<string> activityUserEntries = new List<string> { };
+    // -----------------------------------------------------------------
 
     public void setDuration(int duration)
     {
@@ -12,6 +19,26 @@ public class Activity
     public int getDuration()
     {
         return _duration;
+    }
+
+    public List<string> getActivity()
+    {
+        return activity;
+    }
+
+    public List<string> getActivityPrompts()
+    {
+        return activityPrompts;
+    }
+
+    public List<string> getActivityQuestions()
+    {
+        return activityQuestions;
+    }
+
+    public List<string> getActivityUserEntries()
+    {
+        return activityUserEntries;
     }
 
     public Activity(string name, string description)

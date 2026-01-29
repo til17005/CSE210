@@ -47,12 +47,17 @@ public class ReflectionActivity : Activity
     {
         string getPrompt = GetRandomPrompt();
         Console.WriteLine($"--- {getPrompt} ---");
+
+        // Entry for enhancement
+        activityPrompts.Add(getPrompt);
+        // -----------------------------
     }
 
     public void DisplayQuestion()
     {
         string getQuestion = GetRandomQuestion();
         Console.Write($">>> {getQuestion}  ");
+        activityQuestions.Add(getQuestion);
     }
 
     public void Run()
@@ -90,6 +95,14 @@ public class ReflectionActivity : Activity
             ShowSpinner(10);
             Console.WriteLine();
         }
+
+        // Entries for enhancement
+        string dateStamp = startTime.ToString();
+        activity.Add(dateStamp);
+        activity.Add(_name);
+        activity.Add(_description);
+        activity.Add(sessionDuration);
+        //-----------------------------
 
         Console.Clear();
         Console.WriteLine("Well done!!");

@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.Design;
+using System.IO.Enumeration;
 using System.Xml.Serialization;
 
 class Program
@@ -8,6 +9,54 @@ class Program
     {
         Console.WriteLine("Hello World! This is the Mindfulness Project.\n");
         Console.Clear();
+
+        string userFirstName;
+        string userPIN;
+        int toINT;
+
+        // Check if user would like to record the session
+        Console.Write("Would you like to record your session? (Y or N): ");
+        string recordSession = Console.ReadLine();
+        string recordSessionLower = recordSession.ToLower();
+
+        Activity activity = new Activity("NA", "NA");
+        ActivityHistory activityHistory = new ActivityHistory();
+
+        // If user would like to record the session then check for user file or create a new one
+        if (recordSessionLower == "y")
+        {
+            Console.Write("Please enter your first name: ");
+            userFirstName = Console.ReadLine();
+            Console.Write("\nPlease enter a PIN (4 digits): ");
+            userPIN = Console.ReadLine();
+            Console.WriteLine("You will need to remember your PIN for future sessions!");
+            
+            activity.ShowSpinner(5);
+
+            // Switch PIN back to an int
+            int.TryParse(userPIN, out toINT);
+
+            // Set filename
+            activityHistory.SetFilename(userFirstName, toINT);
+
+            // Check if user file exist and if not create it
+            string filename = $"{userFirstName}{userPIN}.json";
+            if (!File.Exists(filename))
+            {
+                activityHistory.CreateInitialSessionFile(userFirstName, toINT);
+
+                activity.ShowSpinner(2);
+                Console.Write("Creating user session:");
+                activity.ShowSpinner(4);
+            }
+            else if (File.Exists(filename))
+            {
+                activity.ShowSpinner(2);
+                Console.Write("Starting user session:");
+                activity.ShowSpinner(4);
+            }
+            Console.Clear();
+        }
 
         // Set up user menu
         int choice = 0;
@@ -26,6 +75,11 @@ class Program
 
                 BreathingActivity breathingActivity = new BreathingActivity(_activityName, _activityDescription);
                 breathingActivity.Run();
+
+                if (recordSessionLower == "y")
+                {
+                    activityHistory.UpdateSessionFile(activityHistory.GetFilename(), breathingActivity);
+                }
             }
             // Reflecting Activity
             else if (choice == 2)
@@ -35,6 +89,11 @@ class Program
 
                 ReflectionActivity reflectionActivity = new ReflectionActivity(_activityName, _activityDescription);
                 reflectionActivity.Run();
+
+                if (recordSessionLower == "y")
+                {
+                    activityHistory.UpdateSessionFile(activityHistory.GetFilename(), reflectionActivity);
+                }
             }
             // Listing Activity
             else if (choice == 3)
@@ -44,6 +103,11 @@ class Program
 
                 ListingActivity listingActivity = new ListingActivity(_activityName, _activityDescription);
                 listingActivity.Run();
+
+                if (recordSessionLower == "y")
+                {
+                    activityHistory.UpdateSessionFile(activityHistory.GetFilename(), listingActivity);
+                }
             }
         }
 

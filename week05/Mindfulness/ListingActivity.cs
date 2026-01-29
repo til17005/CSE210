@@ -10,8 +10,6 @@ public class ListingActivity : Activity
         "Who are some of your personal heroes?"
     };
 
-    private List<string> userList = new List<string> { };
-
     public ListingActivity(string name, string description) : base(name, description)
     {
         _name = name;
@@ -24,11 +22,15 @@ public class ListingActivity : Activity
         int randomIndex = new Random().Next(_prompts.Count);
         // Send the random prompt with the randomly generated index to the console
         Console.WriteLine($"--- {_prompts[randomIndex]} ---");
+
+        // Entry for enhancement
+        activityPrompts.Add(_prompts[randomIndex]);
+        // -----------------------------------------
     }
 
     public List<string> GetListFromUser()
     {   
-        return userList;
+        return activityUserEntries;
     }
 
     public void Run()
@@ -63,23 +65,26 @@ public class ListingActivity : Activity
         while (DateTime.Now < endTime)
         {
             string userInput = Console.ReadLine();
-            userList.Add(userInput);
+
+            // Entry for enhancement
+            activityUserEntries.Add(userInput);
+            // ---------------------------------
+
             _count++;
         }
+
+        // Entries for enhancement
+        string dateStamp = startTime.ToString();
+        activity.Add(dateStamp);
+        activity.Add(_name);
+        activity.Add(_description);
+        activity.Add(sessionDuration);
+        //-----------------------------
 
         Console.WriteLine($"You listed {_count} items!\n\nWell done!!\n");
         ShowSpinner(4);
         Console.WriteLine($"\nYou have completed another {_duration} seconds of {_name}.");
         ShowSpinner(4);
         Console.Clear();
-
-        /*
-        Console.WriteLine("\n\n\n");
-        foreach (string listing in userList)
-        {
-            Console.WriteLine(listing);
-        }
-        ShowSpinner(10);
-        */
     }
 }
