@@ -1,6 +1,9 @@
 public class ListingActivity : Activity
 {
+    // Variable for count
     private int _count;
+
+    // Create prompts list
     private List<string> _prompts = new List<string>()
     {
         "Who are people that you appreciate?",
@@ -10,12 +13,14 @@ public class ListingActivity : Activity
         "Who are some of your personal heroes?"
     };
 
+    // ListingActivity costructor
     public ListingActivity(string name, string description) : base(name, description)
     {
         _name = name;
         _description = description;
     }
 
+    // Method for getting a random prompt
     public void GetRandomPrompt()
     {
         // Generate a random index to select a random prompt from my _prompts list
@@ -28,11 +33,14 @@ public class ListingActivity : Activity
         // -----------------------------------------
     }
 
+    /* 
     public List<string> GetListFromUser()
-    {   
+    {
         return activityUserEntries;
     }
+    */
 
+    // Method for running the listing activity
     public void Run()
     {
         Console.WriteLine("Get ready...");
@@ -40,7 +48,8 @@ public class ListingActivity : Activity
         ShowCountDown(5);
         Console.Clear();
 
-        Console.WriteLine($"Welcome to the {_name}.\n\n{_description}\n");
+        DisplayStartingMessage();
+        // Console.WriteLine($"Welcome to the {_name}.\n\n{_description}\n\n"); // for testing
 
         Console.Write("How long, in seconds, would you like for your session? ");
         string sessionDuration = Console.ReadLine();
@@ -83,7 +92,8 @@ public class ListingActivity : Activity
 
         Console.WriteLine($"You listed {_count} items!\n\nWell done!!\n");
         ShowSpinner(4);
-        Console.WriteLine($"\nYou have completed another {_duration} seconds of {_name}.");
+        DisplayEndingMessage();
+        // Console.WriteLine($"\nYou have completed another {_duration} seconds of {_name}."); // for testing
         ShowSpinner(4);
         Console.Clear();
     }

@@ -1,11 +1,13 @@
 public class BreathingActivity : Activity
 {
+    // BreathingActivity constructor
     public BreathingActivity(string name, string description) : base(name, description)
     {
         _name = name;
         _description = description;
     }
 
+    // Method for running the breathing activity
     public void Run()
     {
         Console.WriteLine("Get ready...");
@@ -13,7 +15,8 @@ public class BreathingActivity : Activity
         ShowCountDown(5);
         Console.Clear();
 
-        Console.WriteLine($"Welcome to the {_name}.\n\n{_description}\n\n");
+        DisplayStartingMessage();
+        // Console.WriteLine($"Welcome to the {_name}.\n\n{_description}\n\n"); // for testing
 
         Console.Write("How long, in seconds, would you like for your session? ");
         string sessionDuration = Console.ReadLine();
@@ -54,7 +57,8 @@ public class BreathingActivity : Activity
 
         Console.WriteLine("Well done!!");
         ShowSpinner(4);
-        Console.WriteLine($"\nYou have completed another {_duration} seconds of {_name}.");
+        DisplayEndingMessage();
+        // Console.WriteLine($"\nYou have completed another {_duration} seconds of {_name}."); // for testing
         ShowSpinner(4);
         Console.Clear();
     }

@@ -1,5 +1,6 @@
 public class ReflectionActivity : Activity
 {
+    // Create new list(s) for prompts and questions
     private List<string> _prompts = new List<string>()
     {
         "Think of a time when you stood up for someone else.",
@@ -21,12 +22,14 @@ public class ReflectionActivity : Activity
         "How can you keep this experience in mind in the future?"
     };
 
+    // ReflectionActivity constructor
     public ReflectionActivity(string name, string description) : base(name, description)
     {
         _name = name;
         _description = description;
     }
 
+    // Method for retrieving a random prompt
     public string GetRandomPrompt()
     {
         // Generate a random index to select a random prompt from my _prompts list
@@ -35,6 +38,7 @@ public class ReflectionActivity : Activity
         return _prompts[randomIndex];
     }
 
+    // Method for retrieveing a random question
     public string GetRandomQuestion()
     {
         // Generate a random index to select a random prompt from my _questions list
@@ -43,6 +47,7 @@ public class ReflectionActivity : Activity
         return _questions[randomIndex];
     }
 
+    // Method for displaying the reflection prompt
     public void DisplayPrompt()
     {
         string getPrompt = GetRandomPrompt();
@@ -53,6 +58,7 @@ public class ReflectionActivity : Activity
         // -----------------------------
     }
 
+    // Method for displaying the reflection questions
     public void DisplayQuestion()
     {
         string getQuestion = GetRandomQuestion();
@@ -60,6 +66,7 @@ public class ReflectionActivity : Activity
         activityQuestions.Add(getQuestion);
     }
 
+    // Method for running the relection activity
     public void Run()
     {
         Console.WriteLine("Get ready...");
@@ -67,7 +74,8 @@ public class ReflectionActivity : Activity
         ShowCountDown(5);
         Console.Clear();
 
-        Console.WriteLine($"Welcome to the {_name}.\n\n{_description}\n\n");
+        DisplayStartingMessage();
+        // Console.WriteLine($"Welcome to the {_name}.\n\n{_description}\n\n"); // for testing
 
         Console.Write("How long, in seconds, would you like for your session? ");
         string sessionDuration = Console.ReadLine();
@@ -107,7 +115,8 @@ public class ReflectionActivity : Activity
         Console.Clear();
         Console.WriteLine("Well done!!");
         ShowSpinner(4);
-        Console.WriteLine($"\nYou have completed another {_duration} seconds of {_name}.");
+        DisplayEndingMessage();
+        // Console.WriteLine($"\nYou have completed another {_duration} seconds of {_name}."); // for testing
         ShowSpinner(4);
         Console.Clear();
     }
