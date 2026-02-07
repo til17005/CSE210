@@ -13,6 +13,8 @@ class Program
 
         // I do not use GetStringRepresentation because of how I use the JSON files and the List for each type of goal. It just didn't make sense to use it with what I created. I also kept the RecordEvent only in GoalManager due to the nature of the search I have to do, due to having three JSON files. Again, trying to mimic a database, but in the end made it harder for me.
 
+        // I did change up the menus a little - not much, but think it's easier for the user to navigate. I also added a few checks in place to handle what would cause exceptions or other errors. Nothing major.
+
         var goalManager = new GoalManager();
         goalManager.Start();
     }
